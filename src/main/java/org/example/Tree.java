@@ -131,4 +131,18 @@ public class Tree {
 
         return false;
     }
+
+    public boolean isBinaryTree(){
+        return isBinaryTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    private boolean isBinaryTree(Node root, int min, int max) {
+        if (root == null)
+            return true;
+
+        if (root.value < min || root.value > max)
+            return false;
+
+        return isBinaryTree(root.leftChild, min, root.value -1)
+                && isBinaryTree(root.rightChild, root.value + 1, max);
+    }
 }
