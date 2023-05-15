@@ -100,4 +100,15 @@ public class Tree {
         System.out.println(root);
         traverseInOrder(root.rightChild);
     }
+    public void traversePostOrder(){
+        // LEFT , RIGHT, ROOT
+        traversePostOrder(root);
+    }
+    private void traversePostOrder(Node root) {
+        if (root == null)
+            return;
+        traversePostOrder(root.leftChild);
+        traversePostOrder(root.rightChild);
+        System.out.println(root);
+    }
 }
