@@ -19,6 +19,7 @@ public class Main {
 //        tree.traverseInOrder();
 //        tree.traversePostOrder();
 //        System.out.println(tree.isBinaryTree());
+        System.out.println(tree.nodesAtKDistance(1));
 
 //        Tree other = new Tree();
 //        other.insert(7);
