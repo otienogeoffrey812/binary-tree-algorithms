@@ -85,6 +85,7 @@ public class Tree {
     private void traversePreOrder(Node root) {
         if (root == null)
             return;
+
         System.out.println(root);
         traversePreOrder(root.leftChild);
         traversePreOrder(root.rightChild);
@@ -96,6 +97,7 @@ public class Tree {
     private void traverseInOrder(Node root) {
         if (root == null)
             return;
+
         traverseInOrder(root.leftChild);
         System.out.println(root);
         traverseInOrder(root.rightChild);
@@ -107,8 +109,26 @@ public class Tree {
     private void traversePostOrder(Node root) {
         if (root == null)
             return;
+
         traversePostOrder(root.leftChild);
         traversePostOrder(root.rightChild);
         System.out.println(root);
+    }
+
+    public boolean equals(Tree other){
+        return equals(root, other.root);
+    }
+
+    private boolean equals(Node first, Node second) {
+        if (first == null && second == null)
+            return true;
+
+        if (first != null && second != null) {
+            return first.value == second.value
+                    && equals(first.leftChild, second.leftChild)
+                    && equals(first.rightChild, second.rightChild);
+        }
+
+        return false;
     }
 }
