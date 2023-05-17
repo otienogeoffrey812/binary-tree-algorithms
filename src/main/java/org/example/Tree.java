@@ -148,14 +148,12 @@ public class Tree {
         return isBinaryTree(root.leftChild, min, root.value -1)
                 && isBinaryTree(root.rightChild, root.value + 1, max);
     }
-
     public List<Integer> nodesAtKDistance(int k){
 
         ArrayList<Integer> list = new ArrayList<>();
         nodesAtKDistance(root, k, list);
         return list;
     }
-
     private void nodesAtKDistance(Node root, int k, ArrayList<Integer> list) {
         if (root == null)
             return;
@@ -167,7 +165,6 @@ public class Tree {
         nodesAtKDistance(root.leftChild, k - 1, list);
         nodesAtKDistance(root.rightChild, k - 1, list);
     }
-
     public void levelOrderTraversal() {
         if (root == null)
             return;
@@ -176,4 +173,5 @@ public class Tree {
             nodesAtKDistance(i).forEach(System.out::println);
         }
     }
+
 }
