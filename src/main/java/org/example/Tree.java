@@ -39,6 +39,23 @@ public class Tree {
                 current = current.rightChild;
             }
         }
+    }
 
+    public boolean find(int value) {
+        if (root == null)
+            return false;
+
+        var current = root;
+
+        while (current != null){
+            if (value < current.value){
+                current = current.leftChild;
+            } else if(value > current.value){
+                current = current.rightChild;
+            } else{
+                return true;
+            }
+        }
+        return false;
     }
 }
