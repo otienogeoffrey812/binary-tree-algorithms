@@ -78,4 +78,16 @@ public class Tree {
 
         return Math.min(min(root.leftChild), min(root.rightChild));
     }
+
+    public void traversePreOrder(){
+        //ROOT, LEFT , RIGHT
+        traversePreOrder(root);
+    }
+    private void traversePreOrder(Node root) {
+        if (root == null)
+            return;
+        System.out.println(root);
+        traversePreOrder(root.leftChild);
+        traversePreOrder(root.rightChild);
+    }
 }

@@ -15,5 +15,6 @@ public class Main {
 //        System.out.println(tree.find(1));
 //        System.out.println(tree.height());
 //        System.out.println(tree.min());
+        tree.traversePreOrder();
     }
 }
