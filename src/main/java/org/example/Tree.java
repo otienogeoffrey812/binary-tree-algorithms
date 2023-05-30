@@ -58,4 +58,12 @@ public class Tree {
         }
         return false;
     }
+    public int height(){
+        return height(root);
+    }
+    private int height(Node root) {
+        if (root.leftChild == null && root.rightChild == null)
+            return 0;
+        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
 }

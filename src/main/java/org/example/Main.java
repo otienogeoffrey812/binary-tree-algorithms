@@ -13,5 +13,6 @@ public class Main {
         tree.insert(10);
 
 //        System.out.println(tree.find(1));
+        System.out.println(tree.height());
     }
 }
