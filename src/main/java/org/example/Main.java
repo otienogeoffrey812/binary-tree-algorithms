@@ -17,6 +17,17 @@ public class Main {
 //        System.out.println(tree.min());
 //        tree.traversePreOrder();
 //        tree.traverseInOrder();
-        tree.traversePostOrder();
+//        tree.traversePostOrder();
+
+//        Tree other = new Tree();
+//        other.insert(7);
+//        other.insert(4);
+//        other.insert(9);
+//        other.insert(1);
+//        other.insert(6);
+//        other.insert(8);
+//        other.insert(10);
+//
+//        System.out.println(tree.equals(other));
     }
 }
