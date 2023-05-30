@@ -167,4 +167,13 @@ public class Tree {
         nodesAtKDistance(root.leftChild, k - 1, list);
         nodesAtKDistance(root.rightChild, k - 1, list);
     }
+
+    public void levelOrderTraversal() {
+        if (root == null)
+            return;
+
+        for (int i = 0; i <= height(); i++) {
+            nodesAtKDistance(i).forEach(System.out::println);
+        }
+    }
 }
