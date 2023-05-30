@@ -3,10 +3,15 @@ package org.example;
 public class Tree {
     private class Node{
         private int value;
-        private Node rightChild;
         private Node leftChild;
+        private Node rightChild;
         private Node(int value){
             this.value = value;
+        }
+
+        @Override
+        public String toString(){
+            return "Node: "+value;
         }
     }
 
