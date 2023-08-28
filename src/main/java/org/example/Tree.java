@@ -79,7 +79,8 @@ public class Tree {
         if (root.leftChild == null && root.rightChild == null)
             return root.value;
 
-        return Math.min(min(root.leftChild), min(root.rightChild));
+        return Math.min(Math.min(min(root.leftChild)
+                , min(root.rightChild)), root.value);
     }
     public void traversePreOrder(){
         //ROOT, LEFT , RIGHT
@@ -172,6 +173,28 @@ public class Tree {
         for (int i = 0; i <= height(); i++) {
             nodesAtKDistance(i).forEach(System.out::println);
         }
+    }
+    public void printLeaves(){
+        printLeaves(root);
+    }
+    private void printLeaves(Node root) {
+        if(root == null) return;
+
+        if (root.leftChild == null && root.rightChild == null){
+            System.out.println(root.value);
+        }
+        printLeaves(root.leftChild);
+        printLeaves(root.rightChild);
+    }
+
+    public int sumOfNodes(){
+        return sumOfNodes(root);
+    }
+
+    private int sumOfNodes(Node root) {
+        if(root == null)return 0;
+
+        return root.value + sumOfNodes(root.leftChild) + sumOfNodes(root.rightChild);
     }
 
 }

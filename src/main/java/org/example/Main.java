@@ -18,9 +18,10 @@ public class Main {
 //        tree.traversePreOrder();
 //        tree.traverseInOrder();
 //        tree.traversePostOrder();
-        tree.levelOrderTraversal();
+//        tree.levelOrderTraversal();
 //        System.out.println(tree.isBinaryTree());
 //        System.out.println(tree.nodesAtKDistance(1));
+        tree.printLeaves();
 
 //        Tree other = new Tree();
 //        other.insert(7);
