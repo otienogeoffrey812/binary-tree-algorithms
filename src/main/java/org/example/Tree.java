@@ -1,7 +1,9 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Tree {
     private class Node{
@@ -172,6 +174,25 @@ public class Tree {
 
         for (int i = 0; i <= height(); i++) {
             nodesAtKDistance(i).forEach(System.out::println);
+        }
+    }
+    public void levelOrderTraversalUsingQueue(){
+        if (root == null) return;
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()){
+            var current  = queue.poll();
+            System.out.println(current);
+
+            if (current.leftChild != null ){
+                queue.add(current.leftChild);
+            }
+
+            if (current.rightChild != null) {
+                queue.add(current.rightChild);
+            }
         }
     }
     public void printLeaves(){
