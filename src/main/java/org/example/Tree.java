@@ -196,5 +196,14 @@ public class Tree {
 
         return root.value + sumOfNodes(root.leftChild) + sumOfNodes(root.rightChild);
     }
+    private void invertBinaryTree(Node root) {
+        if (root == null) return;
 
+        var temp = root.leftChild;
+        root.leftChild = root.rightChild;
+        root.rightChild = temp;
+
+        invertBinaryTree(root.leftChild);
+        invertBinaryTree(root.rightChild);
+    }
 }
