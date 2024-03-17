@@ -218,4 +218,14 @@ public class Tree {
         invertBinaryTree(node.leftChild);
         invertBinaryTree(node.rightChild);
     }
+
+    public void leftSideView(){
+        if (root == null) return;
+
+        for (int i = 0; i <= height(); i++) {
+            List<Integer> nodesAtLevel = nodesAtKDistance(i);
+            System.out.println(nodesAtLevel.get(0));
+        }
+    }
+
 }

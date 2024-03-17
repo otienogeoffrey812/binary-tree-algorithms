@@ -11,6 +11,8 @@ public class Main {
         tree.insert(6);
         tree.insert(8);
         tree.insert(10);
+        tree.insert(11);
+        tree.insert(12);
 
 //        System.out.println(tree.find(1));
 //        System.out.println(tree.height());
@@ -21,7 +23,8 @@ public class Main {
 //        tree.levelOrderTraversal();
 //        System.out.println(tree.isBinaryTree());
 //        System.out.println(tree.nodesAtKDistance(1));
-        tree.printLeaves();
+//        tree.printLeaves();
+        tree.leftSideView();
 
 //        Tree other = new Tree();
 //        other.insert(7);
