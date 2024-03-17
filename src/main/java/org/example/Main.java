@@ -24,7 +24,8 @@ public class Main {
 //        System.out.println(tree.isBinaryTree());
 //        System.out.println(tree.nodesAtKDistance(1));
 //        tree.printLeaves();
-        tree.leftSideView();
+//        tree.leftSideView();
+        tree.rightSideView();
 
 //        Tree other = new Tree();
 //        other.insert(7);

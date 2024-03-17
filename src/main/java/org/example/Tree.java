@@ -227,5 +227,13 @@ public class Tree {
             System.out.println(nodesAtLevel.get(0));
         }
     }
+    public void rightSideView(){
+        if (root == null) return;
+
+        for (int i = 0; i <= height(); i++) {
+            List<Integer> nodesAtLevel = nodesAtKDistance(i);
+            System.out.println(nodesAtLevel.get(nodesAtLevel.size() - 1));
+        }
+    }
 
 }
