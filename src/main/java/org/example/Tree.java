@@ -66,23 +66,21 @@ public class Tree {
     public int height(){
         return height(root);
     }
-    private int height(Node root) {
-        if (root.leftChild == null && root.rightChild == null)
-            return 0;
-        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    private int height(Node node) {
+        if(node == null) return -1;
+        return 1 + Math.max(height(node.leftChild), height(node.rightChild));
     }
     public int min(){
         return min(root);
     }
-    private int min(Node root) {
-        if (root == null)
-            return -1;
+    private int min(Node node) {
+        if (node == null) return Integer.MAX_VALUE;
 
-        if (root.leftChild == null && root.rightChild == null)
-            return root.value;
+        if (node.leftChild == null && node.rightChild == null)
+            return node.value;
 
-        return Math.min(Math.min(min(root.leftChild)
-                , min(root.rightChild)), root.value);
+        return Math.min(Math.min(min(node.leftChild)
+                , min(node.rightChild)), node.value);
     }
     public void traversePreOrder(){
         //ROOT, LEFT , RIGHT
@@ -112,13 +110,13 @@ public class Tree {
         // LEFT , RIGHT, ROOT
         traversePostOrder(root);
     }
-    private void traversePostOrder(Node root) {
-        if (root == null)
+    private void traversePostOrder(Node node) {
+        if (node == null)
             return;
 
-        traversePostOrder(root.leftChild);
-        traversePostOrder(root.rightChild);
-        System.out.println(root);
+        traversePostOrder(node.leftChild);
+        traversePostOrder(node.rightChild);
+        System.out.println(node);
     }
 
     public boolean equals(Tree other){
@@ -126,30 +124,24 @@ public class Tree {
     }
 
     private boolean equals(Node first, Node second) {
-        if (first == null && second == null)
-            return true;
+        if (first == null && second == null) return true;
+        if (first == null || second == null) return false;
 
-        if (first != null && second != null) {
-            return first.value == second.value
-                    && equals(first.leftChild, second.leftChild)
-                    && equals(first.rightChild, second.rightChild);
-        }
-
-        return false;
+        return first.value == second.value
+                && equals(first.leftChild, second.leftChild)
+                && equals(first.rightChild, second.rightChild);
     }
 
     public boolean isBinaryTree(){
         return isBinaryTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
-    private boolean isBinaryTree(Node root, int min, int max) {
-        if (root == null)
-            return true;
+    private boolean isBinaryTree(Node node, int min, int max) {
+        if (node == null) return true;
 
-        if (root.value < min || root.value > max)
-            return false;
+        if (node.value < min || node.value > max) return false;
 
-        return isBinaryTree(root.leftChild, min, root.value -1)
-                && isBinaryTree(root.rightChild, root.value + 1, max);
+        return isBinaryTree(node.leftChild, min, node.value -1)
+                && isBinaryTree(node.rightChild, node.value + 1, max);
     }
     public List<Integer> nodesAtKDistance(int k){
 
@@ -157,20 +149,19 @@ public class Tree {
         nodesAtKDistance(root, k, list);
         return list;
     }
-    private void nodesAtKDistance(Node root, int k, ArrayList<Integer> list) {
-        if (root == null)
+    private void nodesAtKDistance(Node node, int k, ArrayList<Integer> list) {
+        if (node == null)
             return;
         if (k == 0){
 //            System.out.println(root.value);
-            list.add(root.value);
+            list.add(node.value);
             return;
         }
-        nodesAtKDistance(root.leftChild, k - 1, list);
-        nodesAtKDistance(root.rightChild, k - 1, list);
+        nodesAtKDistance(node.leftChild, k - 1, list);
+        nodesAtKDistance(node.rightChild, k - 1, list);
     }
     public void levelOrderTraversal() {
-        if (root == null)
-            return;
+        if (root == null) return;
 
         for (int i = 0; i <= height(); i++) {
             nodesAtKDistance(i).forEach(System.out::println);
@@ -198,33 +189,33 @@ public class Tree {
     public void printLeaves(){
         printLeaves(root);
     }
-    private void printLeaves(Node root) {
-        if(root == null) return;
+    private void printLeaves(Node node) {
+        if(node == null) return;
 
-        if (root.leftChild == null && root.rightChild == null){
-            System.out.println(root.value);
+        if (node.leftChild == null && node.rightChild == null){
+            System.out.println(node.value);
         }
-        printLeaves(root.leftChild);
-        printLeaves(root.rightChild);
+        printLeaves(node.leftChild);
+        printLeaves(node.rightChild);
     }
 
     public int sumOfNodes(){
         return sumOfNodes(root);
     }
 
-    private int sumOfNodes(Node root) {
-        if(root == null)return 0;
+    private int sumOfNodes(Node node) {
+        if(node == null)return 0;
 
-        return root.value + sumOfNodes(root.leftChild) + sumOfNodes(root.rightChild);
+        return node.value + sumOfNodes(node.leftChild) + sumOfNodes(node.rightChild);
     }
-    private void invertBinaryTree(Node root) {
-        if (root == null) return;
+    private void invertBinaryTree(Node node) {
+        if (node == null) return;
 
-        var temp = root.leftChild;
-        root.leftChild = root.rightChild;
-        root.rightChild = temp;
+        var temp = node.leftChild;
+        node.leftChild = node.rightChild;
+        node.rightChild = temp;
 
-        invertBinaryTree(root.leftChild);
-        invertBinaryTree(root.rightChild);
+        invertBinaryTree(node.leftChild);
+        invertBinaryTree(node.rightChild);
     }
 }
