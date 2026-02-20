@@ -19,7 +19,6 @@ public class Tree {
             return "Node: "+value;
         }
     }
-
     private Node root;
     public void insert(int value){
         var node = new Node(value);
@@ -61,6 +60,19 @@ public class Tree {
                 return true;
             }
         }
+        return false;
+    }
+
+    public boolean find2(int target){
+        return find2(root, target);
+    }
+    private boolean find2(Node root, int target) {
+        if(root == null) return false;
+        if(root.value == target) return true;
+
+        if (find2(root.leftChild, target)) return true;
+        if (find2(root.rightChild, target)) return true;
+
         return false;
     }
     public int height(){
@@ -127,7 +139,7 @@ public class Tree {
         if (first == null && second == null) return true;
         if (first == null || second == null) return false;
 
-        return first.value == second.value
+        return first.value == second.value //Must be compared first
                 && equals(first.leftChild, second.leftChild)
                 && equals(first.rightChild, second.rightChild);
     }
@@ -236,4 +248,76 @@ public class Tree {
         }
     }
 
+    public List<Integer> leftSideView2() {
+        ArrayList<Integer> list = new ArrayList<>();
+        leftSideView2(root, 0, list);
+        return list;
+    }
+
+    private void leftSideView2(Node node, int depth, ArrayList<Integer> list) {
+        if (node == null) return;
+
+        // Add the value of the current node if it's the first node encountered at this depth
+        if (depth >= list.size()) {
+            list.add(node.value);
+        }
+
+        // Traverse to the left child, incrementing the depth
+        leftSideView2(node.leftChild, depth + 1, list);
+
+        // Traverse to the right child, but don't increment the depth to stay on the left side
+        leftSideView2(node.rightChild, depth + 1, list);
+    }
+
+    public List<Integer> rightSideView2() {
+        ArrayList<Integer> list = new ArrayList<>();
+        rightSideView2(root, 0, list);
+        return list;
+    }
+
+    private void rightSideView2(Node node, int depth, ArrayList<Integer> list) {
+        if (node == null) return;
+
+        // Add the value of the current node if it's the first node encountered at this depth
+        if (depth >= list.size()) {
+            list.add(node.value);
+        }
+
+        // Traverse to the right child, incrementing the depth
+        rightSideView2(node.rightChild, depth + 1, list);
+
+        // Traverse to the left child, but don't increment the depth to stay on the right side
+        rightSideView2(node.leftChild, depth + 1, list);
+    }
+    
+    public void rightSideViewQueued(){
+        rightSideViewQueued(root);        
+    }
+
+    private void rightSideViewQueued(Node root) {
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()){
+
+            int size = queue.size(); // No of Nodes at current level
+
+            for (int i = 0; i < size; i++) {
+                Node current = queue.poll();
+
+                if(size - 1 == i) {
+                    System.out.println(current.value);
+                }
+
+                if (current.rightChild != null) {
+                    queue.add(current.rightChild);
+                }
+
+                if (current.leftChild != null) {
+                    queue.add(current.leftChild);
+                }
+            }
+        }
+    }
 }
