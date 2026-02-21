@@ -80,6 +80,8 @@ public class Tree {
     }
     private int height(Node node) {
         if(node == null) return -1;
+        if(node.leftChild == null && node.rightChild == null) return 0;
+
         return 1 + Math.max(height(node.leftChild), height(node.rightChild));
     }
     public int min(){
@@ -289,24 +291,48 @@ public class Tree {
         // Traverse to the left child, but don't increment the depth to stay on the right side
         rightSideView2(node.leftChild, depth + 1, list);
     }
-    
-    public void rightSideViewQueued(){
-        rightSideViewQueued(root);        
-    }
 
-    private void rightSideViewQueued(Node root) {
+    public void leftSideViewQueued(){
+        if(root == null) return;
 
-        Queue<Node> queue = new LinkedList<>();
+        Queue<Tree.Node> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()){
+            int levelSize = queue.size();
 
-            int size = queue.size(); // No of Nodes at current level
+            for (int i = 0; i < levelSize; i++) {
+                Tree.Node current = queue.poll();
 
-            for (int i = 0; i < size; i++) {
-                Node current = queue.poll();
+                if(i == 0) {
+                    System.out.println(current.value);
+                }
 
-                if(size - 1 == i) {
+                if (current.leftChild != null) {
+                    queue.add(current.leftChild);
+                }
+
+                if (current.rightChild != null) {
+                    queue.add(current.rightChild);
+                }
+
+            }
+        }
+    }
+
+    public void rightSideViewQueued(){
+        if(root == null) return;
+
+        Queue<Tree.Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()){
+            int levelSize = queue.size();
+
+            for (int i = 0; i < levelSize; i++) {
+                Tree.Node current = queue.poll();
+
+                if(i == 0) {
                     System.out.println(current.value);
                 }
 
