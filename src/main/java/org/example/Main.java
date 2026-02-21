@@ -3,7 +3,7 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
 
-        Tree2 tree = new Tree2();
+        Tree tree = new Tree();
         tree.insert(7);
         tree.insert(4);
         tree.insert(9);
